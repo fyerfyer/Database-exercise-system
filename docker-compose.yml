@@ -11,6 +11,26 @@ services:
     environment:
       - NODE_ENV=development
     command: npm run dev
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sql_arena_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - sql-arena-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend:
     build:
@@ -23,4 +43,23 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=sql_arena_dev
+      - DB_PORT=5432
+      - PORT=3001
+      - JWT_SECRET=sql_arena_jwt_secret_key_2025
     command: npm start
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - sql-arena-network
+
+volumes:
+  db_data:
+
+networks:
+  sql-arena-network:
+    driver: bridge
