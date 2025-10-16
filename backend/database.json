@@ -1,0 +1,10 @@
+{
+  "dev": {
+    "driver": "pg",
+    "url": { "ENV": "DATABASE_URL" }
+  },
+  "test": {
+    "driver": "pg",
+    "url": { "ENV": "DATABASE_URL" }
+  }
+}

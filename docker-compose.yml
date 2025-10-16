@@ -1,3 +1,4 @@
+# 开发环境 Docker Compose 配置
 services:
   frontend:
     build:
@@ -48,9 +49,10 @@ services:
       - DB_PASSWORD=postgres
       - DB_NAME=sql_arena_dev
       - DB_PORT=5432
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/sql_arena_dev
       - PORT=3001
       - JWT_SECRET=sql_arena_jwt_secret_key_2025
-    command: npm start
+    entrypoint: ["./docker-entrypoint.sh"]
     depends_on:
       db:
         condition: service_healthy

@@ -1,3 +1,4 @@
+# 测试环境 Docker Compose 配置
 services:
   test-db:
     image: postgres:15-alpine
@@ -33,9 +34,10 @@ services:
       DB_PASSWORD: postgres
       DB_NAME: sql_arena_test
       DB_PORT: 5432
+      DATABASE_URL: postgres://postgres:postgres@test-db:5432/sql_arena_test
       PORT: 3001
       JWT_SECRET: test_jwt_secret_key
-    command: npm test
+    entrypoint: ["./docker-entrypoint-test.sh"]
     depends_on:
       test-db:
         condition: service_healthy

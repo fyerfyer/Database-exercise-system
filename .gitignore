@@ -152,8 +152,11 @@ CLAUDE.md
 task1.md
 task2.md
 task3.md
+task4.md
+task4-debug.md
 feature-modules.md
 system-design.md
+PROJECT_STATUS.md
 
 node_modules/
 logs/
