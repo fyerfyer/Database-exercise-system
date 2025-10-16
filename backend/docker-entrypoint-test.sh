@@ -36,4 +36,4 @@ fi
 
 # Run tests
 echo -e "${GREEN}Running tests...${NC}"
-exec npm test
+exec npm run test

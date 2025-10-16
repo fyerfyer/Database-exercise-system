@@ -149,11 +149,7 @@ online-judge-mean-master/
 syzoj-master/
 .claude/
 CLAUDE.md
-task1.md
-task2.md
-task3.md
-task4.md
-task4-debug.md
+task*.md
 feature-modules.md
 system-design.md
 PROJECT_STATUS.md

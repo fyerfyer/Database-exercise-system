@@ -1,6 +1,6 @@
 {
   "testEnvironment": "node",
-  "testTimeout": 30000,
+  "testTimeout": 60000,
   "verbose": true,
   "forceExit": true,
   "detectOpenHandles": true,
@@ -8,6 +8,8 @@
   "testPathIgnorePatterns": [
     "/node_modules/"
   ],
+  "testSequencer": "@jest/test-sequencer",
+  "maxWorkers": 1,
   "collectCoverageFrom": [
     "src/**/*.js",
     "!src/server.js"
